@@ -57,4 +57,4 @@ deploy:
 notification:
     email:
         recipients:
-            - wlswhr160@naver.com
+            - wlswhr160@naver.com 
