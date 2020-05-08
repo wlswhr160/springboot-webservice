@@ -26,11 +26,22 @@ deploy:
     - provider: s3
       access_key_id: $AWS_ACCESS_KEY
       secret_access_key: $ACCESS_SECRET_KEY
-      bucket: a2student4-springboot-webservice    # S3 버킷
-      region: us-west-2                           # S3 버킷 리전
+      bucket: a2student4-springboot-webservice      # S3 버킷
+      region: us-west-2                             # S3 버킷 리전
       skip_cleanup: true
       acl: private
       local_dir: deploy
+      wait-until-deployed: true
+      
+    - provider: codedeploy
+      access_key_id: $AWS_ACCESS_KEY
+      secret_access_key: $ACCESS_SECRET_KEY
+      bucket : a2student4-springboot-webservice
+      key: springboot-webservice.zip
+      bundle_type: zip
+      application: springboot-webservice             # AWS 콘솔에서 등록한 CodeDeploy 애플리케이션
+      deployment_group: springboot-webservice-group  # AWS 콘솔에서 등록한 CodeDeploy 배포 그룹
+      region: us-west-2
       wait-until-deployed: true
       
 notification:
