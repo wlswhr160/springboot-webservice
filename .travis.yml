@@ -21,7 +21,7 @@ before_deploy:
 
     # agent 작업 디렉터리에 만들어짐
     # before-deploy는 배포 파일만 선별
-    - mkdir -p bdfore-deploy
+    - mkdir -p before-deploy
     - cp scripts/*.sh before-deploy/          # deploy.sh
     - cp appspec.yml before-deploy/           # appspec.yml - codedeploy 설정
     - cp build/libs/*.war before-deploy/      # springboot-webservice-xxx.war
