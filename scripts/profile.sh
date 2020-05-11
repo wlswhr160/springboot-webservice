@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 쉬고 있는 프로파일 찾기
-function find_idle_profile_old()
+function find_idle_profile()
 {
 	RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 	
@@ -9,7 +9,7 @@ function find_idle_profile_old()
  	then
  		CURRENT_PROFILE=real2
  	else
- 		CURRENT_PROFILE=real1
+ 		CURRENT_PROFILE=$(curl -s http://localhost/profile)
  	fi
  	
  	if [ ${CURRENT_PROFILE} == real1 ]
@@ -23,7 +23,7 @@ function find_idle_profile_old()
 }
 
 # 쉬고 있는 포트 검색
-function find_idle_port_old()
+function find_idle_port()
 {
 	IDLE_PROFILE=$(find_idle_profile)
 	
@@ -33,24 +33,4 @@ function find_idle_port_old()
 	else
 		echo "8082"
 	fi
-}
-
-function find_idle_port {	
-	PORT=$(cat /etc/nginx/conf.d/service-url.inc | grep 8081)
-	if [ $PORT == 8081 ] 
-	then 
-	    echo "8082"
-	else 
-	    echo "8081"
-	fi
-}
-
-function find_idle_profile() {
-	IDLE_PORT=$(find_idle_port)
-	if [ $IDLE_PORT == 8081 ]
-	then
-		echo "real1"
-	else 
-		echo "real2"
-	fi	
 }
