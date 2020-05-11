@@ -11,7 +11,7 @@ echo "> Build 파일 복사"
 echo "> cp $REPOSITORY/zip/*.war $REPOSITORY/"
 cp $REPOSITORY/zip/*.war $REPOSITORY/
 
-WAR_NAME=$(ls -tr $REPOSITORY/*.war | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.war | tail -n 1)
 echo "> WAR FILE Name: $WAR_NAME"
 
 echo "> 새 애플리케이션($JAR_NAME) 배포"
