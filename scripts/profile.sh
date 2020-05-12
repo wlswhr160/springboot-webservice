@@ -3,23 +3,23 @@
 # 쉬고 있는 프로파일 찾기
 function find_idle_profile()
 {
-	RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
-	
-	if [ ${RESPONSE_CODE} -ge 400 ]
- 	then
- 		CURRENT_PROFILE=real2
- 	else
- 		CURRENT_PROFILE=$(curl -s http://localhost/profile)
- 	fi
- 	
- 	if [ ${CURRENT_PROFILE} == real1 ]
- 	then
- 		IDLE_PROFILE=real2
- 	else
- 		IDLE_PROFILE=real1
- 	fi
- 	
- 	echo "${IDLE_PROFILE}"
+    RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
+    
+    if [ ${RESPONSE_CODE} -ge 400 ]
+    then
+        CURRENT_PROFILE=real2
+    else
+        CURRENT_PROFILE=$(curl -s http://localhost/profile) # real1 또는 real2
+    fi
+    
+    if [ ${CURRENT_PROFILE} == real1 ]
+    then
+        IDLE_PROFILE=real2
+    else
+        IDLE_PROFILE=real1
+    fi
+    
+    echo "${IDLE_PROFILE}"
 }
 
 # 쉬고 있는 포트 검색
